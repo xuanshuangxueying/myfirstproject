@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>上传单文件</title>
+<meta charset="utf-8"></meta>
+<script src="/page/jquery-2.2.3.js"></script>
+<script type="text/javascript">
+//var url = getPath(document.getElementByIdx_x("url"))
+function getPath(obj,fileQuery,transImg){ 
+ 	if(window.navigator.userAgent.indexOf("MSIE")>=1){ 
+ 		obj.select(); 
+ 	   var path=document.selection.createRange().text; 
+ 	   obj.removeAttribute("src"); 
+	   obj.setAttribute("src",transImg); 
+	   obj.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"+path+"', sizingMethod='scale');";  
+  } else{ 
+ 		 var file =fileQuery.files[0];  
+         var reader=  new FileReader();  
+	  reader.onload = function(e){ 
+	     obj.setAttribute("src",e.target.result) 
+	 			} 
+ 	 reader.readAsDataURL(file);  
+ 
+        } 
+ 
+    } 
+   </script>
+
+</head>
+
+<body>
+<form method="POST" enctype="multipart/form-data" action="/upload">
+<p>
+     发件人：<input type="text" name="from" value='1637010331@qq.com'></input>(仅qq邮箱)
+</p>
+<p>
+   收件人：<input type="text" name="to" value='1371584064@qq.com'></input>
+</p>
+<p>
+ 	邮件标题：<input type="text" name="title"></input>
+</p>
+<p>邮件内容：<textarea style="vertical-align: top;width:340px;height:231px;" name="content" ></textarea></p>
+
+<p>
+    选择附件：<input  id="url" type="file" name="file" onchange="getPath(this);"/>
+    <input  id="filePath" type="text" name="filePath" style="display:none" />
+</p>
+<p>
+    <input type="submit" value="发送" />
+</p>
+</form>
+
+
+</body>
+</html>

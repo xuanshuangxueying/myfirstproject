@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="/page/jquery-2.2.3.js"></script>
+<script src="/page/util.js"></script>
+<script type="text/javascript">
+
+	$("#dowload").click(function(){
+		 $.ajax({
+				url:Utils.getPath()+"/download2",
+				data:{ },
+				type:"post",
+				success:function(result){
+					
+			},
+				error:function(){
+					alert("下载失败");
+				}
+			});
+	})
+	
+	</script>
+</head>
+<body>
+		 <a href="http://127.0.0.1:8088/page/2.jpg" download="hah.jpg">点击下载图片</a><br>
+		 <a href="http://127.0.0.1:8088/page/doupo.txt"  download="doupo">点击下载小说</a><br>
+	    
+</body>
+</html>
